@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("param-value-type")
  */
-class ParamValueTypeController extends Controller
+class ValueTypeController extends Controller
 {
     /**
      * Lists all paramValueType entities.

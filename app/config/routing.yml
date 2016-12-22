@@ -1,7 +1,7 @@
 concept:
     resource: "@ConceptBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /concept
 
 app:
     resource: "@AppBundle/Controller/"

@@ -5,22 +5,22 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Monit</th>
+                <th>Monitoring</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for concept in concepts %}
+            {% for lang in langs %}
                 <tr>
-                    <td><a href="{{ path('concept_show', { 'id': concept.id }) }}">{{ concept.id }}</a></td>
-                    <td>{{ concept.monit }}</td>
+                    <td><a href="{{ path('lang_show', { 'id': lang.id }) }}">{{ lang.id }}</a></td>
+                    <td>{{ lang.monit }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('concept_show', { 'id': concept.id }) }}">show</a>
+                                <a href="{{ path('lang_show', { 'id': lang.id }) }}">show</a>
                             </li>
                             <li>
-                                <a href="{{ path('concept_edit', { 'id': concept.id }) }}">edit</a>
+                                <a href="{{ path('lang_edit', { 'id': lang.id }) }}">edit</a>
                             </li>
                         </ul>
                     </td>
@@ -30,7 +30,7 @@
     </table>
     <ul>
         <li>
-            <a href="{{ path('concept_new') }}">Create a new concept</a>
+            <a href="{{ path('lang_new') }}">Create a new lang</a>
         </li>
     </ul>
 {% endblock %}
