@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Concepts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Monit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for concept in concepts %}
+            <tr>
+                <td><a href="{{ path('concept_show', { 'id': concept.id }) }}">{{ concept.id }}</a></td>
+                <td>{{ concept.monit }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('concept_show', { 'id': concept.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('concept_edit', { 'id': concept.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('concept_new') }}">Create a new concept</a>
+        </li>
+    </ul>
+{% endblock %}

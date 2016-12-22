@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Paramvaluetypes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Monitoring</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for paramValueType in paramValueTypes %}
+            <tr>
+                <td><a href="{{ path('param-value-type_show', { 'id': paramValueType.id }) }}">{{ paramValueType.id }}</a></td>
+                <td>{{ paramValueType.monitoring }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('param-value-type_show', { 'id': paramValueType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('param-value-type_edit', { 'id': paramValueType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('param-value-type_new') }}">Create a new paramValueType</a>
+        </li>
+    </ul>
+{% endblock %}
