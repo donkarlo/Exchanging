@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Role
  *
- * @ORM\Table(name="users")
+ * @ORM\Table(name="roles")
  * @ORM\Entity(repositoryClass="Ndrm\AuthBundle\Repository\RoleRepository")
  * @UniqueEntity(fields="role", message="the role name must be unique")
  */
