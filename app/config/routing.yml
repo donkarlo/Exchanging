@@ -1,3 +1,8 @@
+ndrm_auth:
+    resource: "@NdrmAuthBundle/Controller/"
+    type: annotation
+    prefix:   /auth
+
 concept:
     resource: "@ConceptBundle/Controller/"
     type:     annotation

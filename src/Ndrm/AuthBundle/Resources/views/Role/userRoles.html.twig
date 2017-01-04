@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Roles for username:{{username}}</h1>
+    <form method="POST" action="{{}}">
+        {% for roleAndId in allRolesAndTheirIds%}
+            <input name="checkedRoleIds[]" type="checkbox" 
+                   value="{{roleAndId.id}}"  
+                   {% if roleAndId.id in userRoleIds %}checked{% endif %}/>
+            {{roleAndId.role}}
+            <br/>
+        {% endfor %}
+        <input name="_token" type="hidden" value="{{_token}}" />
+        <input name="submit" type="submit" value="submit" />
+    </form>
+{% endblock %}

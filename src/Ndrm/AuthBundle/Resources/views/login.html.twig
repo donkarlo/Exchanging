@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Login</h3>
+        </div>
+        <div class="panel-body">
+            <form action="{{ path('login') }}" method="post">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password" name="_password" />
+                </div>
+
+                {#
+                    If you want to control the URL the user
+                    is redirected to on success (more details below)
+                    <input type="hidden" name="_target_path" value="/account" />
+                #}
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                       >
+                <button class="btn btn-default" type="submit">login</button>
+            </form>
+        </div>
+        <div class="panel-footer">
+            Not registered yet? <a href="{{path('user_new')}}">Register</a>
+            Forgot password? <a href="{{path('user_forgot_password')}}">click here</a>
+        </div>
+    </div>
+{% endblock %}

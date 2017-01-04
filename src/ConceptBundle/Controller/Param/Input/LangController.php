@@ -29,11 +29,10 @@ class LangController extends Controller {
      * @Method("GET")
      */
     public function indexAction(): Response {
-                die("Iran is big");
 
         $em = $this->getDoctrine()->getManager();
 
-        $langs = $em->getRepository('ConceptBundle:Param/Input:Lang')->findAll();
+        $langs = $em->getRepository('ConceptBundle:Param\Input\Lang')->findAll();
 
         return $this->render('ConceptBundle:Param/Input/Lang/Crud:index.html.twig', array(
                     'langs' => $langs,
@@ -43,12 +42,12 @@ class LangController extends Controller {
     /**
      * Creates a new test entity.
      *
-     * @Route("/new", name="lang_show")
+     * @Route("/new", name="lang_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request): Response {
         $lang = new Lang();
-//        $form = $this->createForm('ConceptBundle\Form\Param\Input:LangType', $lang);
+        $form = $this->createForm('ConceptBundle\Form\Param\Input\LangType', $lang);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +67,7 @@ class LangController extends Controller {
     /**
      * Finds and displays a test entity.
      *
-     * @Route("/{id}", name="lang_show")
+     * @Route("/{id}/show", name="lang_show")
      * @Method("GET")
      */
     public function showAction(Lang $lang): Response {
@@ -76,6 +75,45 @@ class LangController extends Controller {
 
         return $this->render('ConceptBundle:Param/Input/Lang/Crud:show.html.twig', array(
                     'lang' => $lang,
+                    'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Creates a form to delete a test entity.
+     *
+     * @param Test $lang The test entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Lang $lang) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl('test_delete', array('id' => $lang->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
+        ;
+    }
+    
+    /**
+     * Displays a form to edit an existing test entity.
+     *
+     * @Route("/{id}/edit", name="lang_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Lang $lang) {
+        $deleteForm = $this->createDeleteForm($lang);
+        $editForm = $this->createForm('ConceptBundle\Form\Param\Input\LangType', $lang);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('lang_show', array('id' => $lang->getId()));
+        }
+
+        return $this->render('ConceptBundle:Param/Input/Lang/Crud:edit.html.twig', array(
+                    'lang' => $lang,
+                    'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
         ));
     }

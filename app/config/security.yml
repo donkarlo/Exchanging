@@ -3,9 +3,17 @@
 security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+        Ndrm\AuthBundle\Entity\User:
+            algorithm: bcrypt
+                
     providers:
-        in_memory:
-            memory: ~
+        our_db_provider:
+            entity:
+                class: NdrmAuthBundle:User
+                property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,6 +23,10 @@ security:
 
         main:
             anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
             # activate different ways to authenticate
 
             # http_basic: ~
