@@ -10,10 +10,15 @@ namespace Ndrm\AuthBundle\Repository;
  */
 class RoleRepository extends \Doctrine\ORM\EntityRepository {
 
-    public function getAllRolesAndTheirIds() {
-        $qb = $this->createQueryBuilder("getAllRolesAndTheirIds");
-        $allRolesAndIds = $qb->select("r.id,r.role")
-                ->from("roles", "r");
+    public function getAllMonitpringsAndTheirIds() {
+        $qb = $this->createQueryBuilder("getAllMonitpringsAndTheirIds");
+        $allRolesAndIds = $qb->select("r.id,r.monitoring")
+                ->from("NdrmAuthBundle:Role", "r")
+                ->orderBy("r.monitoring", "ASC")
+                ->distinct("r.id")
+                ->getQuery()
+                ->getArrayResult()
+        ;
         return $allRolesAndIds;
     }
 

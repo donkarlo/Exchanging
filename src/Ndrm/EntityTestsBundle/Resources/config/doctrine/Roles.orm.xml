@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ndrm\EntityTestsBundle\Entity\Roles" table="roles">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_57698A6A57698A6A" columns="monitoring"/>
+    </unique-constraints>
+    <id name="idRoles" type="integer" column="id_roles">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="monitoring" type="string" column="monitoring" length="25" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

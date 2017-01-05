@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>ویرایش زبان ورودی</h1>
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="ویرایش" />
+    {{ form_end(edit_form) }}
+    <ul>
+        <li>
+            <a href="{{ path('param_input_langs_list') }}">بازگشت به لیست</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="حدف">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

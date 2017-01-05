@@ -1,10 +1,22 @@
+logout:
+    path: /logout
+ndrm_my_tests:
+    resource: "@NdrmMyTestsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+ndrm_entity_tests:
+    resource: "@NdrmEntityTestsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 ndrm_auth:
     resource: "@NdrmAuthBundle/Controller/"
     type: annotation
     prefix:   /auth
 
-concept:
-    resource: "@ConceptBundle/Controller/"
+ndrm_concept:
+    resource: "@NdrmConceptBundle/Controller/"
     type:     annotation
     prefix:   /concept
 

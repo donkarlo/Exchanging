@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Ndrm\EntityTestsBundle\Entity\Concepts" table="concepts">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_7082D49F65DB2055" columns="monit"/>
+    </unique-constraints>
+    <id name="idConcepts" type="integer" column="id_concepts">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="monit" type="string" column="monit" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

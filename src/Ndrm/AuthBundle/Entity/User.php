@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -93,6 +94,11 @@ class User implements AdvancedUserInterface, \Serializable {
      */
     private $roles;
 
+    public function __construct() {
+        $this->isActive = true;
+        $this->roles = new ArrayCollection();
+    }
+
     function getId() {
         return $this->id;
     }
@@ -105,10 +111,6 @@ class User implements AdvancedUserInterface, \Serializable {
         
     }
 
-    public function __construct() {
-        $this->isActive = true;
-    }
-
     public function getUsername() {
         return $this->username;
     }
@@ -118,7 +120,23 @@ class User implements AdvancedUserInterface, \Serializable {
     }
 
     public function getRoles() {
-        return $this->roles;
+        return $this->roles->toArray();
+    }
+
+    public function getRolesIds() {
+//        $rolesIds = array();
+//        foreach ($this->getRoles() as $roleObject) {
+//            $rolesIds[] = $roleObject->getId();
+//        }
+//        return $rolesIds;
+        return $this->roles->map(function (Role $role) {
+                    return $role->getId();
+                });
+    }
+
+    public function deletAllRoles() {
+        $this->roles->clear();
+        return $this;
     }
 
     public function eraseCredentials() {
@@ -127,10 +145,11 @@ class User implements AdvancedUserInterface, \Serializable {
 
     /** @see \Serializable::serialize() */
     public function serialize() {
-        return serialize(array(
+        return json_encode(array(
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->roles
         ));
     }
 
@@ -139,8 +158,9 @@ class User implements AdvancedUserInterface, \Serializable {
         list (
                 $this->id,
                 $this->username,
-                $this->password
-                ) = unserialize($serialized);
+                $this->password,
+                $this->roles
+                ) = json_decode($serialized);
     }
 
     function getEmail() {

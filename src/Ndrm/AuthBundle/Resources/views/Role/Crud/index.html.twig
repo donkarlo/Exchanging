@@ -12,22 +12,22 @@
             </tr>
         </thead>
         <tbody>
-        {% for role in roles %}
-            <tr>
-                <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
-                <td>{{ role.role }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('role_show', { 'id': role.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('role_edit', { 'id': role.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for role in roles %}
+                <tr>
+                    <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
+                    <td>{{ role.monitoring }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('role_show', { 'id': role.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('role_edit', { 'id': role.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

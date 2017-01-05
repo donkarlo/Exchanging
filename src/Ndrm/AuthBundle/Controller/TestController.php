@@ -31,7 +31,7 @@ class TestController extends Controller {
         $userRolesRepository = new RoleRepository($em, Role::class);
         var_dump($userRolesRepository->getAllRolesAndTheirIds());
     }
-    
+
     /**
      * @Route("/m2m")
      */
@@ -39,7 +39,17 @@ class TestController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository("NdrmAuthBundle:User");
         $user3 = $userRepo->find(3);
-        \Doctrine\Common\Util\Debug::dump($user3);
+//        \Doctrine\Common\Util\Debug::dump($user3->getRoleObjects());
+        \Doctrine\Common\Util\Debug::dump($user3->getRoles());
+    }
+
+    /**
+     * @Route("/dup")
+     */
+    public function testDup() {
+        $em = $this->getDoctrine()->getManager();
+        $roleRepo = $em->getRepository("NdrmAuthBundle:Role");
+        die($roleRepo->getAllMonitpringsAndTheirIds());
     }
 
 }

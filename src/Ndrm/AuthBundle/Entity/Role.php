@@ -4,6 +4,8 @@ namespace Ndrm\AuthBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\Role\RoleInterface;
+
 /**
  * Role
  *
@@ -11,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="Ndrm\AuthBundle\Repository\RoleRepository")
  * @UniqueEntity(fields="role", message="the role name must be unique")
  */
-class Role {
+class Role implements RoleInterface {
 
     /**
      * @var int
@@ -25,9 +27,9 @@ class Role {
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=25, unique=true)
+     * @ORM\Column(name="monitoring", type="string", length=25, unique=true)
      */
-    private $role;
+    private $monitoring;
 
     /**
      * Get id
@@ -41,12 +43,12 @@ class Role {
     /**
      * Set role
      *
-     * @param string $role
+     * @param string $monitoring
      *
      * @return Role
      */
-    public function setRole($role) {
-        $this->role = $this->prepareRole($role);
+    public function setMonitoring($monitoring) {
+        $this->monitoring = $this->prepareMonitoring($monitoring);
         return $this;
     }
 
@@ -55,21 +57,25 @@ class Role {
      *
      * @return string
      */
-    public function getRole() {
-        return $this->role;
+    public function getMonitoring() {
+        return $this->monitoring;
     }
 
     /**
      * 
-     * @param string $role
+     * @param string $monitoring
      * @return string
      */
-    private function prepareRole($role) {
-        $role = strtoupper($role);
-        if (strpos($role, "ROLE_") !== 0) {
-            $role = "ROLE_" . $role;
+    private function prepareMonitoring($monitoring) {
+        $monitoring = strtoupper($monitoring);
+        if (strpos($monitoring, "ROLE_") !== 0) {
+            $monitoring = "ROLE_" . $monitoring;
         }
-        return $role;
+        return $monitoring;
+    }
+
+    public function getRole() {
+        return $this->monitoring;
     }
 
 }

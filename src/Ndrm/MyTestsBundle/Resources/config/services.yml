@@ -1,0 +1,4 @@
+services:
+#    ndrm_my_tests.example:
+#        class: Ndrm\MyTestsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -7,12 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Ndrm\AuthBundle\Entity\UserRoles;
 use Ndrm\AuthBundle\Entity\UserRole;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * The pre route to this bundle is concept
  * @Route("user-roles")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class UserRolesController extends Controller {
 
@@ -22,37 +23,43 @@ class UserRolesController extends Controller {
      */
     public function setRoles(Request $request, $idUsers) {
         $session = new Session();
+        //
         $em = $this->getDoctrine()->getManager();
-        $userRolesRepository = $em->getRepository("NdrmAuthBundle:UserRole");
-        if ($request->query->has("submit")) {
+        $userRepository = $em->getRepository("NdrmAuthBundle:User");
+        $userEntity = $userRepository->find($idUsers);
+        //Submitting phase
+        if ($request->get("submit")) {
             if ($session->get("_token") == $request->get("_token")) {
                 $session->remove("_token");
-                $userRolesRepository->deleteAllUserRolesByIdUsers($idUsers);
+                $userEntity->deletAllRoles();
+                $em->persist($userEntity);
+                $em->flush();
                 foreach ($request->get("checkedRoleIds") as $checkedRoleId) {
-                    $userRole = new UserRole();
-                    $userRole->setRole($checkedRoleId);
-                    $userRole->setUser($idUsers);
-                    $em->presist($userRole);
+                    $userRole = new UserRole($idUsers, $checkedRoleId);
+                    $em->persist($userRole);
                     $em->flush();
                 }
-                $this->redirectToRoute("user_index");
+                return $this->redirectToRoute("user_index");
             } else {
                 die("Haha");
             }
-        } else {
-        $roleRepository = $em->getRepository("NdrmAuthBundle:Role");
-        $allRolesAndTheirIds = $roleRepository->getAllRolesAndTheirIds();
-        $viewVars["allRolesAndTheirIds"] = $allRolesAndTheirIds;
-        $userRoleIds = $userRolesRepository->getAUserIdRoles($idUsers);
-        $viewVars["userRoleIds"] = $userRoleIds;
-        $userRepository = $em->getRepository("NdrmAuthBundle:User");
-        $username = $userRepository->getUsernameByIdUsers($idUsers);
-        $viewVars["username"] = $username;
-        $token = md5(rand(1, 10000000));
-        $session->$session->set('_token', $token);
-        $viewVars["_token"] = $token;
-        return $this->render("NdrmAuthBundle:Crud:index.html.twig"
-                        , $viewVars);
+        } else {//Showing phase
+            //Finding all avaialble roles
+            $roleRepository = $em->getRepository("NdrmAuthBundle:Role");
+            $allRolesMonitpringsAndTheirIds = $roleRepository->getAllMonitpringsAndTheirIds();
+            $viewVars["allRolesMonitpringsAndTheirIds"] = $allRolesMonitpringsAndTheirIds;
+
+            //
+            $viewVars["user"] = $userEntity;
+
+            //Token
+            $token = md5(rand(1, 10000000));
+            $session->set('_token', $token);
+            $viewVars["_token"] = $token;
+
+            //Command to render
+            return $this->render("NdrmAuthBundle:Role:userRoles.html.twig"
+                            , $viewVars);
         }
     }
 
