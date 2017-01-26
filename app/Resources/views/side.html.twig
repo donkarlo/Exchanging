@@ -1,0 +1,51 @@
+<ul>
+    <li>
+        <a href="#">کاربران</a>
+        <ul>
+            {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li><a href="{{ path('login') }}">ورود</a></li>
+                {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                <li><a href="{{ path('logout') }}">خروج</a></li>
+                {% endif %}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ path('user_index') }}">لیست کاربران</a>
+                <li>
+                <li>
+                    <a href="#">دسترسی</a>
+                    <ul>
+                        <li>
+                            <a href="{{ path('role_index') }}">لیست</a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+    </li>
+    <li>
+        <a href="#">مفاهیم</a>
+        <ul>
+            <li>
+                <a href="{{path('concept_category_show_tree')}}">درخت</a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="#">پارامترها</a></li>
+                <ul>
+                    <li>
+                        <a href="{{path('param_input_langs_list')}}">ورودی</a>
+                        <ul>
+                            <li>
+                                <a href="{{path('param_input_type_index')}}">انواع</a>
+                            </li>
+                            <li>
+                                <a href="{{path('param_input_langs_list')}}">زبان ها</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+    </li>
+</ul>
+</li>
+</ul>

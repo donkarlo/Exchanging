@@ -70,7 +70,7 @@ class LangController extends Controller {
      * @Route("/{id}/show", name="lang_show")
      * @Method("GET")
      */
-    public function showAction(Lang $lang){
+    public function showAction(Lang $lang) {
         $deleteForm = $this->createDeleteForm($lang);
 
         return $this->render('NdrmConceptBundle:Param/Input/Lang/Crud:show.html.twig', array(
@@ -93,7 +93,7 @@ class LangController extends Controller {
                         ->getForm()
         ;
     }
-    
+
     /**
      * Displays a form to edit an existing test entity.
      *

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Params list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>شناسه</th>
+                
+                <th>نام متغیر</th>
+                <th>عنوان</th>
+                <th>نوع ورودی</th>
+                <th>توضیحات</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for param in params %}
+                <tr>
+                    <td><a href="{{ path('param_show', { 'id': param.id }) }}">{{ param.id }}</a></td>
+                    <td>{{ param.inputType }}</td>
+                    <td>{{ param.title }}</td>
+                    <td>{{ param.name }}</td>
+                    <td>{{ param.description }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('param_show', { 'id': param.id }) }}">نمایش</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('param_edit', { 'id': param.id }) }}">ویرایش</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('concept_param_new_for_a_category'
+                    ,{'conceptCategory':conceptCategory.id}) }}">
+                ایجاد پارامتر جدید
+            </a>
+        </li>
+    </ul>
+{% endblock %}

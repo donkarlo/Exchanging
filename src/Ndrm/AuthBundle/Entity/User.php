@@ -22,7 +22,7 @@ class User implements AdvancedUserInterface, \Serializable {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_users", type="integer")
+     * @ORM\Column(name="id_users", type="integer" , options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

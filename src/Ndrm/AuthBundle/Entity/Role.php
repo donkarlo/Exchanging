@@ -18,7 +18,7 @@ class Role implements RoleInterface {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_roles", type="integer")
+     * @ORM\Column(name="id_roles", type="integer",options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

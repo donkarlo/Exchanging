@@ -14,7 +14,7 @@ class Lang {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_concept_param_input_langs", type="integer")
+     * @ORM\Column(name="id_concept_param_input_langs", type="integer",options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

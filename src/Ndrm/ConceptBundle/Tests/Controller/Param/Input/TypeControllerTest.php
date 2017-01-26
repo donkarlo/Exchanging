@@ -1,10 +1,10 @@
 <?php
 
-namespace Ndrm\ConceptBundle\Tests\Controller\Param;
+namespace Ndrm\ConceptBundle\Tests\Controller\Param\Input;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ParamControllerTest extends WebTestCase
+class TypeControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class ParamControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/param/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /param/");
+        $crawler = $client->request('GET', '/param_input_type/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /param_input_type/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'ndrm_conceptbundle_param_param[field_name]'  => 'Test',
+            'ndrm_conceptbundle_param_input_type[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class ParamControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'ndrm_conceptbundle_param_param[field_name]'  => 'Foo',
+            'ndrm_conceptbundle_param_input_type[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

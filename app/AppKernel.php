@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new Ndrm\AuthBundle\NdrmAuthBundle(),
             new Ndrm\EntityTestsBundle\NdrmEntityTestsBundle(),
             new Ndrm\MyTestsBundle\NdrmMyTestsBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Sonata\DatagridBundle\SonataDatagridBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

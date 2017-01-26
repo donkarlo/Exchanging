@@ -48,7 +48,7 @@ class UserRolesRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter(1, $idUsers)
                 ->getQuery()
                 ->getResult()
-                ;
+        ;
     }
 
     /**

@@ -6,8 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * UserRoles
- * Since I have defined the whole schema in User entity on the top of role property, I skip this here. I just kept this file as a guide although it is unnecessary 
- * @ORM\Entity(repositoryClass="Ndrm\AuthBundle\Repository\UserRoleRepository")
+ * Since I have defined the whole schema in User entity on the top of role property
+ * , I skip this here. I just kept this file as a guide although it is unnecessary 
+ * //@ORM\Entity(repositoryClass="Ndrm\AuthBundle\Repository\UserRoleRepository")
  */
 class UserRole {
 

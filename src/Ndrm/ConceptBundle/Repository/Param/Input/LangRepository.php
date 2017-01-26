@@ -2,6 +2,8 @@
 
 namespace Ndrm\ConceptBundle\Repository\Param\Input;
 
-class LangRepository extends \Doctrine\ORM\EntityRepository {
+use Doctrine\ORM\EntityRepository;
+
+class LangRepository extends EntityRepository {
     
 }

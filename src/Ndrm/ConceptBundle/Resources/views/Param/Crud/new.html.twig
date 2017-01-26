@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>ایجاد پارامترهای یک مفهوم</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="ایجاد" />
+    {{ form_end(form) }}
+    <ul>
+        <li>
+            <a href="{{ path('cancept_param_list_by_concept_category',{'conceptCategory':conceptCategory.id}) }}">بازگشت به لیست پارامترهای درخت</a>
+        </li>
+    </ul>
+{% endblock %}
