@@ -8,7 +8,9 @@
 
     <ul>
         <li>
-            <a href="{{ path('cancept_param_list_by_concept_category',{'conceptCategory':conceptCategory.id}) }}">بازگشت به درخت مفاهیم</a>
+            <a href="{{ path('cancept_param_list_by_concept_category',{'conceptCategory':param.conceptCategory.id}) }}">
+            بازگشت به لیست پارامترها
+            </a>
         </li>
         <li>
             {{ form_start(delete_form) }}

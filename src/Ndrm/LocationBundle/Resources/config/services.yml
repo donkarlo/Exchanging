@@ -1,0 +1,4 @@
+services:
+#    ndrm_location.example:
+#        class: Ndrm\LocationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

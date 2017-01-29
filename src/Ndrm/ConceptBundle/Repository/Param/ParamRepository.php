@@ -3,6 +3,7 @@
 namespace Ndrm\ConceptBundle\Repository\Param;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr;
 
 /**
  * ParamHtmlInputTypeRepository
@@ -12,28 +13,51 @@ use Doctrine\ORM\EntityRepository;
  */
 class ParamRepository extends \Doctrine\ORM\EntityRepository {
 
+    /**
+     * 
+     * @param type $concetCatId
+     * @return type
+     */
     function findByCatWithInputTypeTitle($concetCatId) {
-        $qb = $this->createQueryBuilder("paramListing");
-        $userRoles = $qb->select("concept_params.name"
-                . ",concept_params.title"
-                . ",concept_params.description"
-                ."concept_param_input_types.title"
+        $qb = $this->createQueryBuilder("conceptParam");
+        $params = $qb->select(array("conceptParam"))
+                ->innerJoin("conceptParam.inputType", "inputType")
+                ->innerJoin("conceptParam.conceptCategory"
+                        , "conceptCategory"
+                        , Expr\Join::WITH, $qb->expr()->eq('conceptCategory.id', '?1'))
+                ->orderBy("conceptParam.title")
+                ->setParameter(1, $concetCatId)
+                ->getQuery()
+                ->getResult()
+        ;
+        return $params;
+    }
+
+    function findByCatWithInputTypeTitleWithDbal($concetCatId) {
+        $conn = $this->getEntityManager()->getConnection();
+        $qb = $conn->createQueryBuilder();
+        $qb->select("concept_params.id_concept_params"
+                        . ",concept_params.name"
+                        . ",concept_params.description"
+                        . ",concept_param_input_types.title"
                 )
-                ->from("concept_params", "concept_params")
+                ->from("concept_params"
+                        , "concept_params")//alias
                 ->innerJoin("concept_params"
                         , "concept_param_input_types"
-                        , "concept_param_input_types"//alias name
-                        , "concept_param_input_types.id_concept_param_input_types=concept_params.id_concept_param_input_types")
+                        , "concept_param_input_types"//alias
+                        , "concept_params.id_concept_param_input_types=concept_param_input_types.id_concept_param_input_types")
                 ->innerJoin("concept_params"
                         , "concept_categories"
-                        , "concept_categories"//alias name
-                        , "concept_categories.id_concept_categories=concept_params.id_concept_categories")
-                ->where("concept_categories.id_concept_categories=?1")
-                ->orderBy("concept_params.title")
-                ->setParameter(1, $concetCatId)
+                        , "concept_categories"//alias
+                        , "concept_params.id_concept_categories=concept_categories.id_concept_categories")
+                ->where("concept_categories.id_concept_categories=:id_concept_categories")
         ;
-//        dump($userRoles);
-        return $userRoles;
+        $stmt = $conn->prepare($qb->getSQL());
+        $stmt->bindValue(":id_concept_categories", $concetCatId);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        return $res;
     }
 
 }

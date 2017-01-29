@@ -36,7 +36,8 @@ class ParamController extends Controller {
      */
     public function indexAction(Category $conceptCategory) {
         $em = $this->getDoctrine()->getManager();
-        $params = $em->getRepository(\Ndrm\ConceptBundle\Entity\Param\Param::class)->findByCatWithInputTypeTitle($conceptCategory->getId());
+        $params = $em->getRepository(\Ndrm\ConceptBundle\Entity\Param\Param::class)
+                ->findByCatWithInputTypeTitle($conceptCategory->getId());
         return $this->render(self::PATH_TO_CRUD_VIEWS . 'index.html.twig', array(
                     'params' => $params,
                     'conceptCategory' => $conceptCategory
@@ -101,12 +102,11 @@ class ParamController extends Controller {
         $editForm = $this->createForm(ParamByConceptCategoryType::class
                 , $param);
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('param_edit', array('id' => $param->getId()));
+            return $this->redirectToRoute('concept_param_new_for_a_category'
+                    , array('conceptCategory' => $param->getConceptCategory()));
         }
-
         return $this->render(self::PATH_TO_CRUD_VIEWS . 'edit.html.twig', array(
                     'param' => $param,
                     'edit_form' => $editForm->createView(),

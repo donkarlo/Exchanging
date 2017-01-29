@@ -18,7 +18,7 @@
             {% for param in params %}
                 <tr>
                     <td><a href="{{ path('param_show', { 'id': param.id }) }}">{{ param.id }}</a></td>
-                    <td>{{ param.inputType }}</td>
+                    <td>{{ param.inputType.title }}</td>
                     <td>{{ param.title }}</td>
                     <td>{{ param.name }}</td>
                     <td>{{ param.description }}</td>

@@ -97,7 +97,6 @@ class CategoryController extends Controller {
     /**
      * @Route("/create-node/{parentCategory}", name="concept_category_node_create")
      * @Method({"GET", "POST"})
-     * @return Response
      */
     public function createNodeAction(Request $request, Category $parentNode) {
         $node = new Category();

@@ -30,22 +30,31 @@
                 <a href="{{path('concept_category_show_tree')}}">درخت</a>
             </li>
             {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="#">پارامترها</a></li>
-                <ul>
-                    <li>
-                        <a href="{{path('param_input_langs_list')}}">ورودی</a>
-                        <ul>
-                            <li>
-                                <a href="{{path('param_input_type_index')}}">انواع</a>
-                            </li>
-                            <li>
-                                <a href="{{path('param_input_langs_list')}}">زبان ها</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <li>
+                    <a href="#">پارامترها</a>
+                    <ul>
+                        <li>
+                            <a href="{{path('param_input_langs_list')}}">ورودی</a>
+                            <ul>
+                                <li>
+                                    <a href="{{path('param_input_type_index')}}">انواع</a>
+                                </li>
+                                <li>
+                                    <a href="{{path('param_input_langs_list')}}">زبان ها</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             {% endif %}
+        </ul>
     </li>
-</ul>
-</li>
+    <li>
+        <a href="#">Location</a>
+        <ul>
+            <li>
+                <a href="{{path('location_tree_show')}}">Tree</a>
+            </li>
+        </ul>
+    </li>
 </ul>

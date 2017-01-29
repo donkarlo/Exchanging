@@ -23,9 +23,7 @@ class Param {
     private $id;
 
     /**
-     * Many Users have One Address.
-     * @ORM\Column(name="id_concept_categories", type="integer",options={"unsigned":true})
-     * @ORM\ManyToOne(targetEntity="Ndrm\ConceptBundle\Entity\Category\Category")
+     * @ORM\ManyToOne(targetEntity="Ndrm\ConceptBundle\Entity\Category\Category",inversedBy="params")
      * @ORM\JoinColumn(name="id_concept_categories"
      *                  ,referencedColumnName="id_concept_categories"
      *                  ,onDelete="CASCADE")
@@ -33,9 +31,7 @@ class Param {
     private $conceptCategory;
 
     /**
-     * Many Users have One Address.
-     * @ORM\Column(name="id_concept_param_input_types", type="integer",options={"unsigned":true})
-     * @ORM\OneToOne(targetEntity="Ndrm\ConceptBundle\Entity\Param\Input")
+     * @ORM\OneToOne(targetEntity="Ndrm\ConceptBundle\Entity\Param\Input\Type")
      * @ORM\JoinColumn(name="id_concept_param_input_types"
      *                  , referencedColumnName="id_concept_param_input_types"
      *                  , onDelete="SET NULL")

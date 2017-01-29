@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Ndrm\MyTestsBundle\NdrmMyTestsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sonata\DatagridBundle\SonataDatagridBundle(),
+            new Ndrm\LocationBundle\NdrmLocationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
