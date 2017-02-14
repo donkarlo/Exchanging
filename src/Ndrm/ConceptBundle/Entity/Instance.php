@@ -1,12 +1,9 @@
 <?php
 
-namespace ConceptBundle\Entity;
-
+namespace Ndrm\ConceptBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Ndrm\AuthBundle\Entity\User;
-use Ndrm\LocationBundle\Entity\Location;
-use Ndrm\ConceptBundle\Entity\Category\Category;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="concept_instances")
@@ -24,7 +21,7 @@ class Instance {
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Ndrm\AuthBundle\Entity\User")
      * @ORM\JoinColumn(name="id_users"
      *                  ,referencedColumnName="id_users"
      *                  ,onDelete="CASCADE")
@@ -32,7 +29,7 @@ class Instance {
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Location")
+     * @ORM\ManyToOne(targetEntity="Ndrm\LocationBundle\Entity\Location")
      * @ORM\JoinColumn(name="id_locations"
      *                  , referencedColumnName="id_locations"
      *                  , onDelete="SET NULL")
@@ -40,12 +37,20 @@ class Instance {
     private $location;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Ndrm\ConceptBundle\Entity\Category\Category")
      * @ORM\JoinColumn(name="id_concept_categories"
      *                  , referencedColumnName="id_concept_categories"
      *                  , onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $conceptCategory;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Ndrm\ConceptBundle\Entity\Instance\ParamValue"
+     * ,mappedBy="instance" 
+     * , cascade={"persist"})
+     */
+    private $paramValues;
 
     /**
      * @var string
@@ -64,6 +69,17 @@ class Instance {
      *  , length=200)
      */
     private $description;
+
+    /**
+     * @ORM\Column(name="last_updated"
+     *  , type="datetime")
+     */
+    private $lastUpdated;
+
+    public function __construct() {
+        $this->paramValues = new ArrayCollection();
+        $this->lastUpdated = new \DateTime("now");
+    }
 
     /**
      * @return int
@@ -153,6 +169,30 @@ class Instance {
      */
     function setLocation($location) {
         $this->location = $location;
+    }
+
+    public function getParamValues() {
+        return $this->paramValues;
+    }
+
+    public function getLastUpdated() {
+        return $this->lastUpdated;
+    }
+
+    /**
+     * 
+     * @param mixed $paramValues
+     */
+    public function setParamValues($paramValues) {
+        $this->paramValues = $paramValues;
+    }
+
+    /**
+     * 
+     * @param type $lastUpdated
+     */
+    public function setLastUpdated(\DateTime $lastUpdated) {
+        $this->lastUpdated = $lastUpdated;
     }
 
 }

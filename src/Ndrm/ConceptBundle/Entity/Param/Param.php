@@ -4,7 +4,6 @@ namespace Ndrm\ConceptBundle\Entity\Param;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Ndrm\ConceptBundle\Entity\Category\Category;
 
 /**
  *

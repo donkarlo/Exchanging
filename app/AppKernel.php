@@ -21,7 +21,6 @@ class AppKernel extends Kernel
             new Ndrm\EntityTestsBundle\NdrmEntityTestsBundle(),
             new Ndrm\MyTestsBundle\NdrmMyTestsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Sonata\DatagridBundle\SonataDatagridBundle(),
             new Ndrm\LocationBundle\NdrmLocationBundle(),
         ];
 

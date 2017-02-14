@@ -52,17 +52,25 @@ class CategoryController extends Controller {
             $childNodeCreationUrl = $this->get('router')->generate('concept_category_node_create', array(
                 'parentCategory' => $node['id']
             ));
+
             $childNodeEditUrl = $this->get('router')->generate('concept_category_node_edit', array(
                 'nodeToEdit' => $node['id']
             ));
+
             $childNodeParams = $this->get('router')->generate('cancept_param_list_by_concept_category', array(
                 'conceptCategory' => intval($node['id'])
             ));
+
+            $createInstance = $this->get('router')->generate('concept_create_instance', array(
+                'conceptCategory' => intval($node['id'])
+            ));
+
             return
                     '<ul>'
-                    . '<li><a href="' . $childNodeCreationUrl . '">' . "ایجاد فرزند" . '</a></li>'
-                    . '<li><a href="' . $childNodeEditUrl . '">' . "ویرایش" . '</a></li>'
-                    . '<li><a href="' . $childNodeParams . '">' . "تنظیم پارامتر ها" . '</a></li>'
+                    . '<li><a href="' . $childNodeCreationUrl . '">' . "add child" . '</a></li>'
+                    . '<li><a href="' . $childNodeEditUrl . '">' . "edit" . '</a></li>'
+                    . '<li><a href="' . $childNodeParams . '">' . "setting params" . '</a></li>'
+                    . '<li><a href="' . $createInstance . '">' . "create instance" . '</a></li>'
                     . '</li>'
                     . "</ul>"
             ;

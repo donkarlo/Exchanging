@@ -7,25 +7,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
- * Type controller.
- *
- * @Route("param_input_type")
+ * @Route("param/input/type")
  */
 class TypeController extends Controller {
 
     /**
      * Lists all type entities.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/", name="param_input_type_index")
      * @Method("GET")
      */
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
         $types = $em->getRepository('NdrmConceptBundle:Param\Input\Type')->findAll();
-
         return $this->render('NdrmConceptBundle:Param/Input/Type/Crud:index.html.twig', array(
                     'types' => $types,
         ));
@@ -33,13 +30,14 @@ class TypeController extends Controller {
 
     /**
      * Creates a new type entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="param_input_type_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request) {
         $type = new Type();
-        $form = $this->createForm('Ndrm\ConceptBundle\Form\Param\Input\TypeType', $type);
+        $form = $this->createForm(Ndrm\ConceptBundle\Form\Param\Input\TypeType::class
+                , $type);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -58,7 +56,7 @@ class TypeController extends Controller {
 
     /**
      * Finds and displays a type entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="param_input_type_show")
      * @Method("GET")
      */
@@ -73,7 +71,7 @@ class TypeController extends Controller {
 
     /**
      * Displays a form to edit an existing type entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="param_input_type_edit")
      * @Method({"GET", "POST"})
      */
@@ -97,7 +95,7 @@ class TypeController extends Controller {
 
     /**
      * Deletes a type entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="param_input_type_delete")
      * @Method("DELETE")
      */
@@ -116,9 +114,8 @@ class TypeController extends Controller {
 
     /**
      * Creates a form to delete a type entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @param Type $type The type entity
-     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Type $type) {

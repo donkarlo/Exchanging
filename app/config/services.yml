@@ -7,3 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.form.type.concept_instance_param_value: #this is the unique id of the service
+        class: Ndrm\ConceptBundle\Form\Instance\ParamValueType
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: form.type }
+    app.instance_voter:
+        class: Ndrm\ConceptBundle\Security\InstanceVoter
+        tags:
+            - { name: security.voter }
+        public: false

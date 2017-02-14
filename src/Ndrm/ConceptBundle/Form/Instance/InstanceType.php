@@ -1,34 +1,37 @@
 <?php
 
-namespace Ndrm\ConceptBundle\Form\Param;
+namespace Ndrm\ConceptBundle\Form\Instance;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Ndrm\ConceptBundle\Form\Instance\ParamValueType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
  * 
  */
-class ParamType extends AbstractType {
+class InstanceType extends AbstractType {
 
     protected $builder;
 
     /**
      * {@inheritdoc}
+     * @notice don't add submit to this form
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        ///@todo what about date updated?
         $builder
-                ->add('conceptCategory')
-                ->add('inputType'
-                        , EntityType::class
-                        , ["class" => \Ndrm\ConceptBundle\Entity\Param\Input\Type::class
-                    , "choice_label" => "title"])
-                ->add('name', TextType::class)
                 ->add('title', TextType::class)
                 ->add('description', TextareaType::class)
+                ->add("paramValues"
+                        , CollectionType::class
+                        , array('entry_type' => ParamValueType::class)
+                )
+                ->add("submit", SubmitType::class)
         ;
     }
 
@@ -37,15 +40,8 @@ class ParamType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => \Ndrm\ConceptBundle\Entity\Param\Param::class
+            'data_class' => \Ndrm\ConceptBundle\Entity\Instance::class
         ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix() {
-        return 'ndrm_conceptbundle_param_param';
     }
 
 }

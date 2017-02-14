@@ -66,7 +66,6 @@ class ParamController extends Controller {
             return $this->redirectToRoute('cancept_param_list_by_concept_category'
                             , array('conceptCategory' => $conceptCategory->getId()));
         }
-
         return $this->render(self::PATH_TO_CRUD_VIEWS . 'new.html.twig', array(
                     'param' => $param,
                     'conceptCategory' => $conceptCategory,

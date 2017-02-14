@@ -1,12 +1,10 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
-
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     encoders:
         Ndrm\AuthBundle\Entity\User:
             algorithm: bcrypt
-                
     providers:
         our_db_provider:
             entity:
@@ -14,7 +12,6 @@ security:
                 property: username
                 # if you're using multiple entity managers
                 # manager_name: customer
-
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:

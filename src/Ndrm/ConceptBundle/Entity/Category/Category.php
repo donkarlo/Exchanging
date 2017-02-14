@@ -10,7 +10,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="concept_categories")
- * use repository for handy tree functions
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  */
 class Category {
