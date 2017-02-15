@@ -61,7 +61,11 @@ class CategoryController extends Controller {
                 'conceptCategory' => intval($node['id'])
             ));
 
-            $createInstance = $this->get('router')->generate('concept_create_instance', array(
+            $createInstance = $this->get('router')->generate('concept_instance_create', array(
+                'conceptCategory' => intval($node['id'])
+            ));
+
+            $listInstances = $this->get('router')->generate('concept_instance_list', array(
                 'conceptCategory' => intval($node['id'])
             ));
 
@@ -71,6 +75,7 @@ class CategoryController extends Controller {
                     . '<li><a href="' . $childNodeEditUrl . '">' . "edit" . '</a></li>'
                     . '<li><a href="' . $childNodeParams . '">' . "setting params" . '</a></li>'
                     . '<li><a href="' . $createInstance . '">' . "create instance" . '</a></li>'
+                    . '<li><a href="' . $listInstances . '">' . "list instances" . '</a></li>'
                     . '</li>'
                     . "</ul>"
             ;

@@ -5,6 +5,7 @@ namespace Ndrm\ConceptBundle\Security;
 use \Ndrm\ConceptBundle\Entity\Instance;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 
 /**
  * 
@@ -20,12 +21,19 @@ class InstanceVoter extends Voter {
      * Contains a list of constants
      */
     private $attributes;
+    
+    /**
+     *
+     * @var AccessDecisionManagerInterface
+     */
+    private $decisionManager;
 
     /**
      * 
      */
-    public function __construct() {
+    public function __construct(AccessDecisionManagerInterface $decisionManager) {
         $this->attributes = [self::VIEW, self::EDIT, self::DELETE];
+        $this->decisionManager = $decisionManager;
     }
 
     /**

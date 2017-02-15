@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Ndrm\MyTestsBundle\NdrmMyTestsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Ndrm\LocationBundle\NdrmLocationBundle(),
+            new MyTestBundle\MyTestBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -29,6 +30,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Remg\GeneratorBundle\RemgGeneratorBundle();
         }
 
         return $bundles;

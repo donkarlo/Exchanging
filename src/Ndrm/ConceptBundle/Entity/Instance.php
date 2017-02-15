@@ -48,7 +48,8 @@ class Instance {
     /**
      * @ORM\OneToMany(targetEntity="Ndrm\ConceptBundle\Entity\Instance\ParamValue"
      * ,mappedBy="instance" 
-     * , cascade={"persist"})
+     * ,cascade={"persist"}
+     * )
      */
     private $paramValues;
 

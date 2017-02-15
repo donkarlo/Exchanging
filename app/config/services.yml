@@ -14,6 +14,7 @@ services:
             - { name: form.type }
     app.instance_voter:
         class: Ndrm\ConceptBundle\Security\InstanceVoter
+        arguments: ['@security.access.decision_manager']
         tags:
             - { name: security.voter }
         public: false

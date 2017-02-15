@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "41c940904a0e6ad293d0c66dd5f8b24b",
+    "content-hash": "5e9ddfde4f5b3a7e93a3dc7dc4b7d422",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1214,6 +1214,47 @@
             "time": "2016-10-10T12:19:37+00:00"
         },
         {
+            "name": "remg/generator-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Remg/GeneratorBundle.git",
+                "reference": "2a0104c5a2445558ceacf46de39421120ad3a53d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Remg/GeneratorBundle/zipball/2a0104c5a2445558ceacf46de39421120ad3a53d",
+                "reference": "2a0104c5a2445558ceacf46de39421120ad3a53d",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^1.6",
+                "doctrine/orm": "^2.5",
+                "php": ">=5.5.9",
+                "symfony/framework-bundle": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "5.6.*",
+                "symfony/phpunit-bridge": "^3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Remg\\GeneratorBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Code generation tool for Symfony3.",
+            "time": "2017-02-14 12:13:26"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v5.0.15",
             "source": {
@@ -1376,63 +1417,6 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2016-09-23T18:09:57+00:00"
-        },
-        {
-            "name": "sonata-project/datagrid-bundle",
-            "version": "2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonata-project/SonataDatagridBundle.git",
-                "reference": "0749e710b936bf84736c648eee16bc45e2c04607"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/0749e710b936bf84736c648eee16bc45e2c04607",
-                "reference": "0749e710b936bf84736c648eee16bc45e2c04607",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/dependency-injection": "~2.3|~3.0",
-                "symfony/form": "~2.3|~3.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.4",
-                "fabpot/php-cs-fixer": "~0.5|~1.0",
-                "symfony/phpunit-bridge": "~2.7|~3.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonata\\DatagridBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sonata Community",
-                    "homepage": "https://github.com/sonata-project/SonataDatagridBundle/contributors"
-                },
-                {
-                    "name": "Thomas Rabaix",
-                    "email": "thomas.rabaix@sonata-project.org",
-                    "homepage": "https://sonata-project.org"
-                }
-            ],
-            "description": "Symfony SonataDatagridBundle",
-            "homepage": "https://sonata-project.org/bundles/datagrid",
-            "keywords": [
-                "datagrid",
-                "sonata"
-            ],
-            "time": "2015-12-16T08:53:13+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -2262,6 +2246,63 @@
             "time": "2016-12-05T16:01:19+00:00"
         },
         {
+            "name": "sonata-project/datagrid-bundle",
+            "version": "2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataDatagridBundle.git",
+                "reference": "0749e710b936bf84736c648eee16bc45e2c04607"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/0749e710b936bf84736c648eee16bc45e2c04607",
+                "reference": "0749e710b936bf84736c648eee16bc45e2c04607",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/dependency-injection": "~2.3|~3.0",
+                "symfony/form": "~2.3|~3.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4",
+                "fabpot/php-cs-fixer": "~0.5|~1.0",
+                "symfony/phpunit-bridge": "~2.7|~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\DatagridBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataDatagridBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "https://sonata-project.org"
+                }
+            ],
+            "description": "Symfony SonataDatagridBundle",
+            "homepage": "https://sonata-project.org/bundles/datagrid",
+            "keywords": [
+                "datagrid",
+                "sonata"
+            ],
+            "time": "2015-12-16T08:53:13+00:00"
+        },
+        {
             "name": "symfony/phpunit-bridge",
             "version": "v3.2.1",
             "source": {
@@ -2322,7 +2363,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "remg/generator-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Instance list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>شناسه</th>
+                <th>عنوان</th>
+                <th>توضیحات</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instance in instances %}
+                <tr>
+                    <td>{{ instance.id }}</td>
+                    <td>{{ instance.title }}</td>
+                    <td>{{ instance.description }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('concept_instance_show', { 'instance': instance.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('concept_instance_edit', { 'instance': instance.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
