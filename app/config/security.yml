@@ -2,6 +2,11 @@
 # http://symfony.com/doc/current/security.html
 security:
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    
+    # I am using access control because of a bug in 3.2.2 nad it should be removed as 3.24 is rleased.
+    # and hence this will trigger security for all urls. 
+    access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     encoders:
         Ndrm\AuthBundle\Entity\User:
             algorithm: bcrypt

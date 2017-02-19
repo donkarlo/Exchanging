@@ -87,7 +87,7 @@ class InstanceController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($instanceEntity);
             $em->flush();
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('concept_instance_list', array("conceptCategory" => $conceptCategory));
         }
         return $this->render(self::PATH_TO_CRUD_VIEWS . "modify.html.twig"
                         , array("form" => $instanceForm->createView()));
@@ -107,17 +107,12 @@ class InstanceController extends Controller {
         $instanceForm = $this->createForm(InstanceType::class
                 , $instance
         );
-//        $em = $this->getDoctrine()->getManager();
-//        $paramValueRepo = $em->getRepository(ParamValue::class);
-//        $pvals = $paramValueRepo->findBy(array("instance" => $instance));
-//        dump($pvals);
-
         $instanceForm->handleRequest($request);
         if ($instanceForm->isSubmitted() && $instanceForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($instance);
             $em->flush();
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('concept_instance_list', array("conceptCategory" => $instance->getConceptCategory()));
         }
         return $this->render(self::PATH_TO_CRUD_VIEWS . "modify.html.twig"
                         , array("form" => $instanceForm->createView()));

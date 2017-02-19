@@ -1,22 +1,25 @@
 <ul>
     <li>
-        <a href="#">کاربران</a>
+        <a href="#">Users</a>
         <ul>
             {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <li><a href="{{ path('login') }}">ورود</a></li>
-                {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
-                <li><a href="{{ path('logout') }}">خروج</a></li>
-                {% endif %}
-
+                <li>
+                    <a href="{{ path('login') }}">Login</a>
+                </li>
+            {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                <li>
+                    <a href="{{ path('logout') }}">Logout</a>
+                </li>
+            {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="{{ path('user_index') }}">لیست کاربران</a>
+                    <a href="{{ path('user_index') }}">List</a>
+                </li>
                 <li>
-                <li>
-                    <a href="#">دسترسی</a>
+                    <a href="#">Roles</a>
                     <ul>
                         <li>
-                            <a href="{{ path('role_index') }}">لیست</a>
+                            <a href="{{ path('role_index') }}">List</a>
                         </li>
                     </ul>
                 </li>
@@ -24,23 +27,23 @@
         </ul>
     </li>
     <li>
-        <a href="#">مفاهیم</a>
+        <a href="#">Concepts</a>
         <ul>
             <li>
-                <a href="{{path('concept_category_show_tree')}}">درخت</a>
+                <a href="{{path('concept_category_show_tree')}}">Tree</a>
             </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="#">پارامترها</a>
+                    <a href="#">Parameters</a>
                     <ul>
                         <li>
-                            <a href="{{path('param_input_langs_list')}}">ورودی</a>
+                            <a href="{{path('param_input_langs_list')}}">Inputs</a>
                             <ul>
                                 <li>
-                                    <a href="{{path('param_input_type_index')}}">انواع</a>
+                                    <a href="{{path('param_input_type_index')}}">Types</a>
                                 </li>
                                 <li>
-                                    <a href="{{path('param_input_langs_list')}}">زبان ها</a>
+                                    <a href="{{path('param_input_langs_list')}}">Languages</a>
                                 </li>
                             </ul>
                         </li>

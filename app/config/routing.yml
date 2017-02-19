@@ -1,8 +1,3 @@
-my_test:
-    resource: "@MyTestBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 ndrm_location:
     resource: "@NdrmLocationBundle/Controller/"
     type:     annotation

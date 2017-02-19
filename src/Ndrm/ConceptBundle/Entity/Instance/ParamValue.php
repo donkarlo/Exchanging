@@ -38,7 +38,8 @@ class ParamValue {
      */
     private $param;
 
-    /* @ORM\Column(name="value"
+    /**
+     * @ORM\Column(name="value"
      *              , type="string"
      *              ,length=100)
      */
@@ -79,12 +80,5 @@ class ParamValue {
     public function setValue($value) {
         $this->value = $value;
     }
-
-//    public function __get($name) {
-//        return $this->value;
-//    }
-//    public function __set($name,$value) {
-//        $this->value=$value;
-//    }
 
 }

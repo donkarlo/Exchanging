@@ -1,6 +1,7 @@
 <?php
 
 namespace Ndrm\ConceptBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -185,6 +186,13 @@ class Instance {
      * @param mixed $paramValues
      */
     public function setParamValues($paramValues) {
+        if ($paramValues instanceof ArrayCollection) {
+            if (!$paramValues->isEmpty()) {
+                foreach ($paramValues->getValues() as $value) {
+                    $value->setInstance($this);
+                }
+            }
+        }
         $this->paramValues = $paramValues;
     }
 
